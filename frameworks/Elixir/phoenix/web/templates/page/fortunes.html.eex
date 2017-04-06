@@ -1,1 +1,1 @@
-<table><tr><th>id</th><th>message</th></tr><%= for f <- @fortunes do %><tr><td><%= f.id %></td><td><%= f.message %></td></tr><% end %></table>
+<table><tr><th>id</th><th>message</th></tr><%= for f <- @fortunes do %><tr><td><%= elem(f,0) %></td><td><%= elem(f, 1) %></td></tr><% end %></table>

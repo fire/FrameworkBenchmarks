@@ -35,14 +35,15 @@ defmodule Hello.PageController do
   end
 
   def fortunes(conn, _params) do
-    additional_fortune = %Fortune{
-      id: 0,
-      message: "Additional fortune added at request time."
+    additional_fortune = {
+      0,
+      "Additional fortune added at request time."
     }
-
-    fortunes = [additional_fortune | Repo.all(Fortune)]
-
-    render conn, "fortunes.html", fortunes: Enum.sort(fortunes, fn f1, f2 -> f1.message < f2.message end)
+    query =
+      "fortune"
+      |> select([f], {f.id, f.message})
+    fortunes = [additional_fortune | Repo.all(query)]
+    render conn, "fortunes.html", fortunes: Enum.sort(fortunes, fn f1, f2 -> elem(f1, 1) < elem(f2, 1) end)
   end
 
   def updates(conn, params) do
