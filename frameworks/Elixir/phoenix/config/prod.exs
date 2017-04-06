@@ -10,12 +10,12 @@ config :hello, Hello.Endpoint,
   server: true
 
 config :hello, Hello.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "benchmarkdbuser",
-  password: "benchmarkdbpass",
-  database: "hello_world",
-  hostname: "TFB-database",
-  pool_size: 256
+  adapter: Ecto.Adapters.SnappyData,
+  username: "app",
+  password: "app",
+  hostname: "192.168.0.23",
+  port: 32254,
+  pool_size: 20
 
 # ## SSL Support
 #
