@@ -15,8 +15,12 @@ defmodule Hello.PageController do
   end
 
   def db(conn, _params) do
+    query =
+      from(World)
+      |> select([w], {w.id, w.randomnumber})
+
     conn
-    |> json(Repo.get(World, :rand.uniform(10000)))
+    |> json(Repo.get(query, :rand.uniform(10000)))
   end
 
   def queries(conn, params) do
