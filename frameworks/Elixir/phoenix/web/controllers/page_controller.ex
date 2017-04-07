@@ -40,8 +40,17 @@ defmodule Hello.PageController do
       ArgumentError -> 1
     end
 
+    query =
+      from(World)
+      |> select([w], {w.id, w.randomnumber})
+
+    queries = Enum.map(1..q, fn _ ->
+      {id, randomnumber} = Repo.get(query, :rand.uniform(10000))
+      %WorldJson{id: id, randomNumber: randomnumber}
+    end)
+
     conn
-    |> json(Enum.map(1..q, fn _ -> Repo.get(World, :rand.uniform(10000)) end))
+    |> json(queries)
   end
 
   def fortunes(conn, _params) do
