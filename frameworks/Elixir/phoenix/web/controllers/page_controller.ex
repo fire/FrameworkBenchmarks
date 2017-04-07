@@ -14,13 +14,19 @@ defmodule Hello.PageController do
     |> json(%{message: "Hello, world!"})
   end
 
+  defmodule WorldJson do
+    @derive [Poison.Encoder]
+    defstruct [:id, :randomNumber]
+  end
+
   def db(conn, _params) do
     query =
       from(World)
       |> select([w], {w.id, w.randomnumber})
 
+    {id, randomnumber} = Repo.get(query, :rand.uniform(10000))
     conn
-    |> json(Repo.get(query, :rand.uniform(10000)))
+    |> json(%WorldJson{id: id, randomNumber: randomnumber})
   end
 
   def queries(conn, params) do
