@@ -14,19 +14,15 @@ defmodule Hello.PageController do
     |> json(%{message: "Hello, world!"})
   end
 
-  defmodule WorldJson do
-    @derive [Poison.Encoder]
-    defstruct [:id, :randomNumber]
-  end
-
   def db(conn, _params) do
     query =
       from(World)
-      |> select([w], {w.id, w.randomnumber})
+      |> select([w], { w.randomnumber})
 
-    {id, randomnumber} = Repo.get(query, :rand.uniform(10000))
+    id = :rand.uniform(10000)
+    {randomnumber} = Repo.get(query, id)
     conn
-    |> json(%WorldJson{id: id, randomNumber: randomnumber})
+    |> json(%{id: id, randomNumber: randomnumber})
   end
 
   def queries(conn, params) do
@@ -42,11 +38,12 @@ defmodule Hello.PageController do
 
     query =
       from(World)
-      |> select([w], {w.id, w.randomnumber})
+      |> select([w], {w.randomnumber})
 
     queries = Enum.map(1..q, fn _ ->
-      {id, randomnumber} = Repo.get(query, :rand.uniform(10000))
-      %WorldJson{id: id, randomNumber: randomnumber}
+      id = :rand.uniform(10000)
+      {randomnumber} = Repo.get(query, id)
+      %{id: id, randomNumber: randomnumber}
     end)
 
     conn
@@ -76,14 +73,17 @@ defmodule Hello.PageController do
       ArgumentError -> 1
     end
 
+    query =
+      from(World)
+      |> select([w], {w.randomnumber})
+
     conn
     |> json(Enum.map(1..q, fn _ ->
       id = :rand.uniform(10000)
       num = :rand.uniform(10000)
-      w = Repo.get(World, id)
-      changeset = World.changeset(w, %{randomnumber: num})
-      Repo.update(changeset)
-      %{id: id, randomnumber: num}
+      w = Repo.get(query, id)
+      {:ok, update} = Repo.update(Ecto.Changeset.change(%World{id: id, randomnumber: elem(w, 0)}))
+      %{id: update.id, randomnumber: update.randomnumber}
     end))
   end
 
