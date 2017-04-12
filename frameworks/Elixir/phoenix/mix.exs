@@ -28,7 +28,7 @@ defmodule Hello.Mixfile do
   defp deps do
     [{:phoenix, "~> 1.2"},
      {:phoenix_ecto, "~> 3.0"},
-     {:snappydata_ecto, git: "https://github.com/fire/snappydata_ecto.git", ref: "50c0f145e82ef53611ccef7c0b556e237571fd3c"},
+     {:snappydata_ecto, git: "https://github.com/fire/snappydata_ecto.git"},
      {:postgrex, ">= 0.0.0"},
      {:cowboy, "~> 1.0.0"},
      {:phoenix_html, "~> 2.6"},
