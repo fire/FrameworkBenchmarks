@@ -15,12 +15,9 @@ defmodule Hello.PageController do
   end
 
   def db(conn, _params) do
-    query =
-      from(World)
-      |> select([w], { w.randomnumber})
 
     id = :rand.uniform(10000)
-    {randomnumber} = Repo.get(query, id)
+    randomnumber = Repo.get(World, id)
     conn
     |> json(%{id: id, randomNumber: randomnumber})
   end
@@ -36,13 +33,9 @@ defmodule Hello.PageController do
       ArgumentError -> 1
     end
 
-    query =
-      from(World)
-      |> select([w], {w.randomnumber})
-
     queries = Enum.map(1..q, fn _ ->
       id = :rand.uniform(10000)
-      {randomnumber} = Repo.get(query, id)
+      randomnumber = Repo.get(World, id)
       %{id: id, randomNumber: randomnumber}
     end)
 
