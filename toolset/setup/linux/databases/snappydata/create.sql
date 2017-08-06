@@ -1,4 +1,4 @@
-connect 'jdbc:snappydata://192.168.0.23:31292/;framed-transport=true;binary-protocol=true';
+-- /opt/snappydata/bin/snappy-sql run -file=/snappydata/server/create.sql -connection-url=jdbc:snappydata://snappydata-server-0.snappydata-server.default.svc.cluster.local:1527/;framed-transport=true;binary-protocol=true
 
 DROP TABLE IF EXISTS Fortune;
 CREATE TABLE Fortune (
@@ -7,8 +7,7 @@ CREATE TABLE Fortune (
   PRIMARY KEY  (id)
 )
 PARTITION BY COLUMN (message)
-REDUNDANCY 2
-PERSISTENT ASYNCHRONOUS;
+REDUNDANCY 2;
 -- GRANT SELECT ON Fortune to benchmarkdbuser;
 
 INSERT INTO Fortune (id, message) VALUES (1, 'fortune: No such file or directory');
@@ -31,8 +30,7 @@ CREATE TABLE  World (
   PRIMARY KEY  (id)
 )
 PARTITION BY COLUMN (randomNumber)
-REDUNDANCY 2
-PERSISTENT ASYNCHRONOUS;
+REDUNDANCY 2;
 -- GRANT SELECT, UPDATE ON World to benchmarkdbuser;
 
 -- for i in {1..10000}; do
