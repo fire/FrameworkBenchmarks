@@ -2,7 +2,7 @@ use Mix.Config
 
 config :hello, Hello.Endpoint,
   url: [host: "0.0.0.0"],
-  http: [port: 8080, protocol_options: [max_keepalive: 5_000_000]],
+  http: [port: 8081, protocol_options: [max_keepalive: 5_000_000]],
   cache_static_lookup: false,
   server: true
 
@@ -10,8 +10,8 @@ config :hello, Hello.Repo,
   adapter: Ecto.Adapters.SnappyData,
   username: "app",
   password: "app",
-  hostname: "192.168.0.23",
-  port: 31292,
+  hostname: "192.168.0.36",
+  port: 32359,
   pool_size: 20
 
 # ## SSL Support
