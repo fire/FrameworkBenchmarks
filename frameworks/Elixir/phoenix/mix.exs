@@ -26,7 +26,7 @@ defmodule Hello.Mixfile do
   #
   # Type `mix help deps` for examples and options
   defp deps do
-    [{:phoenix, "~> 1.2"},
+    [{:phoenix, "~> 1.3"},
      {:phoenix_ecto, "~> 3.0"},
      {:snappydata_ecto, git: "https://github.com/fire/snappydata_ecto.git"},
      {:postgrex, ">= 0.0.0"},
