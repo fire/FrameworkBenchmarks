@@ -12,7 +12,8 @@ config :hello, Hello.Repo,
   password: "",
   database: "aquawater",
   hostname: "127.0.0.1",
-  port: 26257,
+  pool_size: 20,
+  port: 26257
 
 # ## SSL Support
 #

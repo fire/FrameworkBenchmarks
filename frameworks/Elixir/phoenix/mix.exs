@@ -29,7 +29,7 @@ defmodule Hello.Mixfile do
     [{:phoenix, "~> 1.3"},
      {:phoenix_ecto, "~> 3.0"},
      {:crdbex, git: "https://github.com/fire/crdbex.git", app: false},
-     {:eflame, ~r/.*/, git: "https://github.com/slfritchie/eflame.git", compile: "rebar compile"},
+#     {:eflame, ~r/.*/, git: "https://github.com/slfritchie/eflame.git", compile: "rebar compile"},
      {:snappydata_ecto, git: "https://github.com/fire/snappydata_ecto.git"},
      {:cowboy, "~> 1.0.0"},
      {:phoenix_html, "~> 2.6"},
