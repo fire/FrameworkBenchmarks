@@ -26,7 +26,7 @@ INSERT INTO Fortune (id, message) VALUES (12, 'フレームワークのベンチ
 DROP TABLE IF EXISTS World;
 CREATE TABLE  World (
   id integer NOT NULL,
-  randomNumber integer NOT NULL default 0,
+  randomNumber integer NOT NULL,
   PRIMARY KEY  (id)
 )
 PARTITION BY COLUMN (randomNumber)
