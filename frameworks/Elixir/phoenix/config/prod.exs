@@ -7,13 +7,21 @@ config :hello, Hello.Endpoint,
   server: true
 
 config :hello, Hello.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "root",
-  password: "",
-  database: "aquawater",
-  hostname: "127.0.0.1",
-  pool_size: 20,
-  port: 26257
+  adapter: Ecto.Adapters.SnappyData,
+  username: "app",
+  password: "app",
+  hostname: "192.168.0.10",
+  port: 30641,
+  pool_size: 20
+
+#config :hello, Hello.Repo,
+#  adapter: Ecto.Adapters.Postgres,
+#  username: "root",
+#  password: "",
+#  database: "bench",
+#  hostname: "127.0.0.1",
+#  pool_size: 20,
+#  port: 26257
 
 # ## SSL Support
 #

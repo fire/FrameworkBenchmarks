@@ -26,8 +26,8 @@ config :hello, Hello.Repo,
   adapter: Ecto.Adapters.SnappyData,
   username: "app",
   password: "app",
-  hostname: "192.168.0.36",
-  port: 32359,
+  hostname: "192.168.0.10",
+  port: 30641,
   pool_size: 20
 
 # Do not include metadata nor timestamps in development logs
