@@ -1,6 +1,5 @@
 defmodule Hello.World do
   use Ecto.Schema
-
   import Ecto.Changeset
 
   schema "world" do
@@ -9,7 +8,7 @@ defmodule Hello.World do
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, [:randomnumber])
+    |> cast(params, [:id, :randomnumber])
     |> validate_required([:randomnumber])
   end
 end
